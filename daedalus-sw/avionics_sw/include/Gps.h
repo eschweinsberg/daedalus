@@ -5,12 +5,12 @@
  *      Author: ees37
  */
 
-#ifndef GPS_H_
-#define GPS_H_
+#ifndef INCLUDE_GPS_H_
+#define INCLUDE_GPS_H_
 
 class Gps
 {
 
 };
 
-#endif /* GPS_H_ */
+#endif /* INCLUDE_GPS_H_ */

@@ -5,12 +5,12 @@
  *      Author: ees37
  */
 
-#ifndef LOGGER_H_
-#define LOGGER_H_
+#ifndef INCLUDE_LOGGER_H_
+#define INCLUDE_LOGGER_H_
 
 class Logger
 {
 
 };
 
-#endif /* LOGGER_H_ */
+#endif /* INCLUDE_LOGGER_H_ */

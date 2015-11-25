@@ -5,12 +5,12 @@
  *      Author: ees37
  */
 
-#ifndef ARDUIMU_H_
-#define ARDUIMU_H_
+#ifndef INCLUDE_ARDUIMU_H_
+#define INCLUDE_ARDUIMU_H_
 
 class Arduimu
 {
 
 };
 
-#endif /* ARDUIMU_H_ */
+#endif /* INCLUDE_ARDUIMU_H_ */
