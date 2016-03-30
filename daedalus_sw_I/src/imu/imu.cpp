@@ -88,9 +88,9 @@ double Imu::getAltitude()
 void Imu::debugAllToConsole()
 {
   Serial.print("Pitch: ");
-  Serial.println(getPitch());
-  Serial.print("Roll: ");
-  Serial.println(getRoll());
-  Serial.print("Heading: ");
+  Serial.print(getPitch());
+  Serial.print(", Roll: ");
+  Serial.print(getRoll());
+  Serial.print(", Heading: ");
   Serial.println(getHeading());
 }

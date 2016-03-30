@@ -13,5 +13,5 @@ void setup()
 void loop()
 {
   imu.debugAllToConsole();
-  delay(2000);
+  delay(20);
 }
