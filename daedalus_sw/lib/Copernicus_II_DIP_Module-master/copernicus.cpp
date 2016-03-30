@@ -1,7 +1,7 @@
-/* 
+/*
  * File:   CopernicusGPS.cpp
  * Author: tbabb
- * 
+ *
  * Created on October 5, 2013, 10:35 PM
  */
 
@@ -22,8 +22,8 @@
 
 /**
  * Construct a new `CopernicusGPS` object.
- * 
- * @param serial_num Arduino serial stream to monitor. 0 is `Serial`, 1 is 
+ *
+ * @param serial_num Arduino serial stream to monitor. 0 is `Serial`, 1 is
  * `Serial1`, etc.
  */
 CopernicusGPS::CopernicusGPS(int serial_num):
@@ -39,7 +39,7 @@ CopernicusGPS::CopernicusGPS(int serial_num):
 #ifdef UBRR3H
         case 3: m_serial = &Serial3; break;
 #endif
-        default: 
+        default:
 #if defined(UBRRH) || defined(UBRR0H)
             m_serial = &Serial;
 #else
@@ -72,7 +72,7 @@ void CopernicusGPS::endCommand() {
 }
 
 /**
- * Read data bytes from a TSIP report packet, unpacking any escape 
+ * Read data bytes from a TSIP report packet, unpacking any escape
  * sequences in the process, placing `n` decoded bytes into `dst`. Blocks until
  * `n` bytes are decoded, or the end of the packet is reached (in which case
  * the two end-of-packet bytes will be consumed).
@@ -86,7 +86,7 @@ int CopernicusGPS::readDataBytes(uint8_t *dst, int n) {
         int read = m_serial->read();
         if (read == CTRL_DLE) {
             int peek = m_serial->peek();
-            if (peek == -1) { 
+            if (peek == -1) {
                 blockForData();
                 peek = m_serial->peek();
             }
@@ -104,9 +104,9 @@ int CopernicusGPS::readDataBytes(uint8_t *dst, int n) {
 }
 
 /**
- * Encode `n` data bytes as part of a TSIP command packet and send them to the 
- * gps module. Must be called only if a command has been opened with a call to 
- * `beginCommand()`, and may be called multiple times before a call to `endCommand()`. 
+ * Encode `n` data bytes as part of a TSIP command packet and send them to the
+ * gps module. Must be called only if a command has been opened with a call to
+ * `beginCommand()`, and may be called multiple times before a call to `endCommand()`.
  * @param bytes Data bytes to encode and send.
  * @param n Number of bytes to encode.
  */
@@ -122,18 +122,18 @@ void CopernicusGPS::writeDataBytes(const uint8_t* bytes, int n) {
 
 /**
  * Consume bytes from the serial input until an end-of-packet is
- * reached, stopping early if and only if no data is available and `block` is 
- * `false`. 
- * 
- * If this function returns `true`, the next data in the stream are expected to 
- * be the header of the next packet. To ensure correctness, an even number of 
- * `DLE` (0x10) bytes should have been consumed since the start of the current 
+ * reached, stopping early if and only if no data is available and `block` is
+ * `false`.
+ *
+ * If this function returns `true`, the next data in the stream are expected to
+ * be the header of the next packet. To ensure correctness, an even number of
+ * `DLE` (0x10) bytes should have been consumed since the start of the current
  * packet.
- * 
- * If the flush terminates early due to unavailable data, then the 
+ *
+ * If the flush terminates early due to unavailable data, then the
  * stream will be left in such a state that a later call to `flushToNextPacket()`
  * or `processOnePacket()` will behave as expected.
- * 
+ *
  * @param block Whether to wait for the complete packet to arrive.
  * @return True if the current packet was completely consumed/flushed.
  */
@@ -156,21 +156,21 @@ bool CopernicusGPS::flushToNextPacket(bool block) {
  * processed. If `block` is `false`, this function will return `RPT_NONE` if
  * no packet data was available. Otherwise, a valid packet ID or `RPT_ERROR` will
  * be returned.
- * 
+ *
  * Must be called regularly or in response to serial events. Example usage:
- *      
+ *
  *      // flush packets in a tight loop:
  *      while (gps.processOnePacket(false) != RPT_NONE) {}
- * 
+ *
  * Event handling:
- * 
+ *
  *      ReportType evt;
  *      while ((evt = gps.processOnePacket(false)) != RPT_NONE) {
  *          switch (evt) {
  *              // respond to updates
  *          }
  *      }
- * 
+ *
  * @param block If `true`, will always wait for a complete packet to arrive.
  * @return The report ID of the processed packet, or `RPT_NONE` if `block`
  * is `false` and no data was available.
@@ -180,10 +180,10 @@ ReportType CopernicusGPS::processOnePacket(bool block) {
 }
 
 /**
- * Process packets/input until the header of a packet with type `type` is 
+ * Process packets/input until the header of a packet with type `type` is
  * encountered, at which point the stream will be left for the caller to process.
  * The caller should fully consume the packet, including the end-of-packet bytes.
- * 
+ *
  * @param type Type of packet to wait for.
  */
 void CopernicusGPS::waitForPacket(ReportType type) {
@@ -210,10 +210,10 @@ bool CopernicusGPS::endReport() {
 /**
  * Set the format of position, velocity, and altitude fixes.
  * PPS settings and GPS time format may also be set with this command.
- * 
+ *
  * To leave a fix mode unchanged, pass `RPT_NONE`. Other mode settings
  * have `NOCHANGE` constants which will preserve the current settings.
- * 
+ *
  * @param pos_fixmode New position fix format. Any of the `RPT_FIX_POS_*` constants, or `RPT_NONE`.
  * @param vel_fixmode New velocity fix format. Any of the `RPT_FIX_VEL_*` constants, or `RPT_NONE`.
  * @param alt New altitude format.
@@ -223,7 +223,7 @@ bool CopernicusGPS::endReport() {
  * have taken effect.
  * @return `true` if the settings were change successfully, `false` if an I/O problem occurred.
  */
-bool CopernicusGPS::setFixMode(ReportType pos_fixmode, 
+bool CopernicusGPS::setFixMode(ReportType pos_fixmode,
                                ReportType vel_fixmode,
                                AltMode alt,
                                PPSMode pps,
@@ -233,17 +233,17 @@ bool CopernicusGPS::setFixMode(ReportType pos_fixmode,
     beginCommand(CMD_IO_OPTIONS);
     endCommand();
     waitForPacket(RPT_IO_SETTINGS);
-    
+
     uint8_t bytes[4];
     if (readDataBytes(bytes, 4) != 4) return false;
     if (not endReport()) return false;
-    
+
     const uint8_t pos_mask = 0x13;
     const uint8_t vel_mask = 0x03;
     const uint8_t alt_mask = 0x04;
     const uint8_t pps_mask = 0x60;
     const uint8_t tme_mask = 0x01;
-    
+
     // alter position fixmode
     switch (pos_fixmode) {
         case RPT_FIX_POS_LLA_32:
@@ -268,16 +268,16 @@ bool CopernicusGPS::setFixMode(ReportType pos_fixmode,
     if (alt  != ALT_NOCHANGE) bytes[0] = (bytes[0] & ~alt_mask) | alt;
     if (pps  != PPS_NOCHANGE) bytes[2] = (bytes[2] & ~pps_mask) | pps;
     if (time != TME_NOCHANGE) bytes[2] = (bytes[2] & ~tme_mask) | time;
-    
+
     beginCommand(CMD_IO_OPTIONS);
     writeDataBytes(bytes, 4);
     endCommand();
-    
+
     if (block) {
         waitForPacket(RPT_IO_SETTINGS);
         flushToNextPacket();
     }
-    
+
     return true;
 }
 
@@ -320,7 +320,7 @@ ReportType CopernicusGPS::implProcessOnePacket(bool block, ReportType haltAt) {
             else if (not processReport(rpt)) return RPT_ERROR;
             else return rpt;
         }
-    } 
+    }
 }
 
 bool CopernicusGPS::processReport(ReportType type) {
@@ -353,7 +353,7 @@ bool CopernicusGPS::processReport(ReportType type) {
                     ok = (st != PKT_ERROR);
                     break;
                 }
-            } 
+            }
             if (st != PKT_CONSUMED) {
                 // consume the rest of this packet.
                 flushToNextPacket(false);
@@ -366,13 +366,13 @@ bool CopernicusGPS::process_p_LLA_32() {
     m_pfix.type = RPT_FIX_POS_LLA_32;
     LLA_Fix<Float32> *fix = &m_pfix.lla_32;
     uint8_t buf[4];
-    
+
     SAVE_BYTES(&fix->lat.bits, buf, 4);
     SAVE_BYTES(&fix->lng.bits, buf, 4);
     SAVE_BYTES(&fix->alt.bits, buf, 4);
     SAVE_BYTES(&fix->bias.bits, buf, 4);
     SAVE_BYTES(&fix->fixtime.bits, buf, 4);
-    
+
     bool ok = endReport();
     if (not ok) m_vfix.type = RPT_ERROR;
     return ok;
@@ -382,13 +382,13 @@ bool CopernicusGPS::process_p_LLA_64() {
     m_pfix.type = RPT_FIX_POS_LLA_64;
     LLA_Fix<Float64> *fix = &m_pfix.lla_64;
     uint8_t buf[8];
-    
+
     SAVE_BYTES(&fix->lat.bits, buf, 8);
     SAVE_BYTES(&fix->lng.bits, buf, 8);
     SAVE_BYTES(&fix->alt.bits, buf, 8);
     SAVE_BYTES(&fix->bias.bits, buf, 8);
     SAVE_BYTES(&fix->fixtime.bits, buf, 4);
-    
+
     bool ok = endReport();
     if (not ok) m_vfix.type = RPT_ERROR;
     return ok;
@@ -398,13 +398,13 @@ bool CopernicusGPS::process_p_XYZ_32() {
     m_pfix.type = RPT_FIX_POS_XYZ_32;
     XYZ_Fix<Float32> *fix = &m_pfix.xyz_32;
     uint8_t buf[4];
-    
+
     SAVE_BYTES(&fix->x.bits, buf, 4);
     SAVE_BYTES(&fix->y.bits, buf, 4);
     SAVE_BYTES(&fix->z.bits, buf, 4);
     SAVE_BYTES(&fix->bias.bits, buf, 4);
     SAVE_BYTES(&fix->fixtime.bits, buf, 4);
-    
+
     bool ok = endReport();
     if (not ok) m_pfix.type = RPT_ERROR;
     return ok;
@@ -414,13 +414,13 @@ bool CopernicusGPS::process_p_XYZ_64() {
     m_pfix.type = RPT_FIX_POS_XYZ_64;
     XYZ_Fix<Float64> *fix = &m_pfix.xyz_64;
     uint8_t buf[8];
-    
+
     SAVE_BYTES(&fix->x.bits, buf, 8);
     SAVE_BYTES(&fix->y.bits, buf, 8);
     SAVE_BYTES(&fix->z.bits, buf, 8);
     SAVE_BYTES(&fix->bias.bits, buf, 8);
     SAVE_BYTES(&fix->fixtime.bits, buf, 4);
-    
+
     bool ok = endReport();
     if (not ok) m_pfix.type = RPT_ERROR;
     return ok;
@@ -430,13 +430,13 @@ bool CopernicusGPS::process_v_XYZ() {
     m_vfix.type = RPT_FIX_VEL_XYZ;
     XYZ_VFix *fix = &m_vfix.xyz;
     uint8_t buf[4];
-    
+
     SAVE_BYTES(&fix->x.bits, buf, 4);
     SAVE_BYTES(&fix->y.bits, buf, 4);
     SAVE_BYTES(&fix->z.bits, buf, 4);
     SAVE_BYTES(&fix->bias.bits, buf, 4);
     SAVE_BYTES(&fix->fixtime.bits, buf, 4);
-    
+
     bool ok = endReport();
     if (not ok) m_vfix.type = RPT_ERROR;
     return ok;
@@ -446,13 +446,13 @@ bool CopernicusGPS::process_v_ENU() {
     m_vfix.type = RPT_FIX_VEL_ENU;
     ENU_VFix *fix = &m_vfix.enu;
     uint8_t buf[4];
-    
+
     SAVE_BYTES(&fix->e.bits, buf, 4);
     SAVE_BYTES(&fix->n.bits, buf, 4);
     SAVE_BYTES(&fix->u.bits, buf, 4);
     SAVE_BYTES(&fix->bias.bits, buf, 4);
     SAVE_BYTES(&fix->fixtime.bits, buf, 4);
-    
+
     bool ok = endReport();
     if (not ok) m_vfix.type = RPT_ERROR;
     return ok;
@@ -460,11 +460,11 @@ bool CopernicusGPS::process_v_ENU() {
 
 bool CopernicusGPS::process_GPSTime() {
     uint8_t buf[4];
-    
+
     SAVE_BYTES(&m_time.time_of_week.bits, buf, 4);
     SAVE_BYTES(&m_time.week_no, buf, 2);
     SAVE_BYTES(&m_time.utc_offs, buf, 4);
-    
+
     bool ok = endReport();
     if (not ok)  m_time.time_of_week.bits = 0xBF800000; // -1
     return ok;
@@ -474,7 +474,7 @@ bool CopernicusGPS::process_health() {
     uint8_t buf[2];
     if (readDataBytes(buf, 2) != 2) return false;
     m_status.health = static_cast<GPSHealth>(buf[0]);
-    
+
     bool ok = endReport();
     if (not ok) m_status.health = HLTH_UNKNOWN;
     return ok;
@@ -485,7 +485,7 @@ bool CopernicusGPS::process_addl_status() {
     if (readDataBytes(buf, 3) != 3) return false;
     m_status.rtclock_unavailable = (buf[1] & 0x02) != 0;
     m_status.almanac_incomplete  = (buf[1] & 0x08) != 0;
-    
+
     return endReport();
 }
 
@@ -494,7 +494,7 @@ bool CopernicusGPS::process_sbas_status() {
     if (readDataBytes(&buf, 1) != 1) return false;
     m_status.sbas_corrected = (buf & 0x01) != 0;
     m_status.sbas_enabled   = (buf & 0x02) != 0;
-    
+
     return endReport();
 }
 
@@ -541,7 +541,7 @@ const GPSTime& CopernicusGPS::getGPSTime() const {
 
 /**
  * Add a `GPSPacketProcessor` to be notified of incoming TSIP packets. At most
- * `MAX_PKT_PROCESSORS` (8) are supported at a time. 
+ * `MAX_PKT_PROCESSORS` (8) are supported at a time.
  * @param pcs Processor to add.
  * @return `false` if there was not enough space to add the processor, `true` otherwise.
  */
