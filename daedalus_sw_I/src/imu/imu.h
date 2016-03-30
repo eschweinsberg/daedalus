@@ -21,6 +21,8 @@ class Imu
     double getHeading();
     double getAltitude();
 
+    double getMedian(int n);
+
   private:
     Adafruit_10DOF                dof;
     Adafruit_LSM303_Accel_Unified accel;
