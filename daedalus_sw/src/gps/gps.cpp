@@ -9,6 +9,7 @@ float toDegrees(float angle_radians) {
 
 void Gps::initAll()
 {
+  Serial.print("I exist");
   gps = CopernicusGPS(1);
 
 }
