@@ -3,7 +3,7 @@
  * Author: tbabb
  *
  * Created on October 5, 2013, 10:35 PM
- * 
+ *
  * Note: It would be entirely possible, and not difficult, to extract
  * this module's dependency on the Arduino by replacing m_serial with
  * any reasonable buffered serial IO class.
@@ -46,24 +46,24 @@ class CopernicusGPS; // fwd decl
 
 /**
  * @brief Class for directly intercepting and processing TSIP packets.
- * 
+ *
  * This provides a mechanism by which a client may make use of Trimble packets
  * which are not directly monitored/implemented by this API.
- * 
- * Only packets not monitored by the CopernicusGPS class will be passed on to 
+ *
+ * Only packets not monitored by the CopernicusGPS class will be passed on to
  * registered GPSPacketProcessors.
  */
 class GPSPacketProcessor {
 public:
     virtual ~GPSPacketProcessor();
-    
+
     /**
      * Called when a new TSIP packet has arrived. The packet header (`DLE` byte
-     * and report ID) will have already been consumed. 
-     * 
+     * and report ID) will have already been consumed.
+     *
      * This function must not leave the stream in the middle of a `DLE` escape
-     * sequence; that is to say an even number of `DLE` bytes must be consumed. 
-     * 
+     * sequence; that is to say an even number of `DLE` bytes must be consumed.
+     *
      * @param type Type of TSIP report waiting in the serial stream.
      * @param gps GPS module which intercepted the report.
      * @return A `PacketStatus` indicating the state of the stream.
@@ -77,7 +77,7 @@ public:
 
 // - what does the fix time mean / how does it relate to GPS time?
 //   - the fix time is the time at which the fix was acquired. it will generally
-//     be a few seconds in the past. Use your sync'd current GPS time 
+//     be a few seconds in the past. Use your sync'd current GPS time
 //     to figure out how that relates to "now".
 // - how does the GPS time relate to the last/next PPS?
 //   - reported GPS time is that of the last PPS. So at the next
@@ -89,37 +89,37 @@ public:
 class CopernicusGPS {
 public:
     CopernicusGPS(int serial=0);
-    
+
     ReportType processOnePacket(bool block=false);
     void waitForPacket(ReportType type);
-    
+
     void beginCommand(CommandID cmd);
     void writeDataBytes(const uint8_t *bytes, int n);
     int  readDataBytes(uint8_t *dst, int n);
     void endCommand();
-    
+
     bool setFixMode(ReportType pos_fixmode,
                     ReportType vel_fixmode,
                     AltMode alt=ALT_NOCHANGE,
                     PPSMode pps=PPS_NOCHANGE,
                     GPSTimeMode time=TME_NOCHANGE,
                     bool block=false);
-    
+
     HardwareSerial  *getSerial();
     const PosFix&    getPositionFix() const;
     const VelFix&    getVelocityFix() const;
     const GPSTime&   getGPSTime() const;
     const GPSStatus& getStatus() const;
-    
+
     bool addPacketProcessor(GPSPacketProcessor *pcs);
     void removePacketProcessor(GPSPacketProcessor *pcs);
-    
+
 private:
-    
+
     ReportType implProcessOnePacket(bool block, ReportType haltAt);
-    
+
     bool processReport(ReportType type);
-    
+
     bool process_p_LLA_32();
     bool process_p_LLA_64();
     bool process_p_XYZ_32();
@@ -130,12 +130,12 @@ private:
     bool process_health();
     bool process_addl_status();
     bool process_sbas_status();
-    
+
     // todo: fix this busy wait.
     inline void blockForData() { while (m_serial->available() <= 0) {} }
     bool flushToNextPacket(bool block=true);
     bool endReport();
-    
+
     HardwareSerial *m_serial;
     PosFix    m_pfix;
     VelFix    m_vfix;
@@ -148,4 +148,3 @@ private:
 /// @} // addtogroup monitor
 
 #endif	/* COPERNICUS_H */
-
