@@ -9,6 +9,7 @@ void setup()
 {
   // Begin communication on the main serial port for debugging
   Serial.begin(9600);
+  while(!Serial);
 //  imu.initAll();
   gps.initAll();
 }
