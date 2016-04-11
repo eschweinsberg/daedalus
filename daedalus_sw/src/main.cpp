@@ -1,9 +1,11 @@
 #include "Arduino.h"
 #include "imu/imu.h"
 #include "gps/gps.h"
+#include "sd/sd.h"
 
 Imu imu;
 Gps gps;
+Sd sd;
 
 void setup()
 {
