@@ -20,5 +20,5 @@ void loop()
 {
 //  imu.debugAllToConsole();
   gps.debugAllToConsole();
-  delay(100);
+  //delay(100);
 }
