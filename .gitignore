@@ -1,1 +1,3 @@
-/daedalus_sw/avionics_sw/Debug/*
+.pioenvs
+.clang_complete
+.gcc-flags.json

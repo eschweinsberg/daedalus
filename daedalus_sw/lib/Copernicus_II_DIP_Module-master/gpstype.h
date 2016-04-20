@@ -1,4 +1,4 @@
-/* 
+/*
  * File:   gpstype.h
  * Author: tbabb
  *
@@ -36,9 +36,9 @@ enum ReportType {
     RPT_ERROR = -1,
     /// Set in fixes if the fix is invalid and/or no fix has been obtained yet.
     RPT_NONE = 0x00,
-    
+
     // position/velocity fixes
-    
+
     /// Position fix, Lat/Lng/Alt, single-precision (32 bit).
     RPT_FIX_POS_LLA_32 = 0x4A,
     /// Position fix, Lat/Lng/Alt, double-precision (64 bit).
@@ -51,9 +51,9 @@ enum ReportType {
     RPT_FIX_VEL_XYZ    = 0x43,
     /// Velocity fix, East/North/Up.
     RPT_FIX_VEL_ENU    = 0x56,
-    
+
     // other auto-reports
-    
+
     /// GPS time report.
     RPT_GPSTIME     = 0x41,
     /// Receiver health report.
@@ -64,9 +64,9 @@ enum ReportType {
     RPT_SATELLITES  = 0x6d,
     /// SBAS (Satellite-based augmentation system) mode report.
     RPT_SBAS_MODE   = 0x82,
-    
+
     // replies
-    
+
     /// GPS IO settings.
     RPT_IO_SETTINGS = 0x55,
 };
@@ -81,7 +81,7 @@ enum GPSHealth {
     /// Set if satellite geometry is too poor to obtain a fix.
     HLTH_PDOP_TOO_HIGH             = 0x03,
     /// Set if the chosen SV is unavailable.
-    HLTH_SV_UNAVAILABLE            = 0x04, 
+    HLTH_SV_UNAVAILABLE            = 0x04,
     /// Set if no useable satellites have been locked.
     HLTH_SATELLITES_NONE           = 0x08,
     /// Set if only one useable satellite has been locked.
@@ -147,7 +147,7 @@ union Float32 {
 #if FLT_MANT_DIG == 24 || defined(PARSING_DOXYGEN)
     /**
      * @brief The actual `float` value of the datapoint.
-     * 
+     *
      * Unavailable if `float` is not a 32-bit IEEE 754.
      */
     float f;
@@ -162,7 +162,7 @@ union Float64 {
 #if DBL_MANT_DIG == 53 || defined(PARSING_DOXYGEN)
     /**
      * @brief The actual `double` value of the datapoint.
-     * 
+     *
      * Unavailable if `double` is not a 64-bit IEEE 754. Only some Arduino
      * boards support this, such as the Arduino Due.
      */
@@ -215,19 +215,19 @@ struct ENU_VFix {
 
 /**
  * @brief Position fix.
- * 
+ *
  * Depending on the reporting mode of the receiver, this structure may store
  * a report of type `RPT_FIX_POS_LLA_32`, `RPT_FIX_POS_LLA_64`, `RPT_FIX_POS_XYZ_32`,
- * `RPT_FIX_POS_XYZ_64`, or `RPT_NONE`. The stored type is indicated by 
- * `PosFix.type`; use one of the four access methods to obtain an object storing 
- * the actual position data. Access methods which don't currently correspond to 
+ * `RPT_FIX_POS_XYZ_64`, or `RPT_NONE`. The stored type is indicated by
+ * `PosFix.type`; use one of the four access methods to obtain an object storing
+ * the actual position data. Access methods which don't currently correspond to
  * the store type will return `NULL`.
- * 
- * If the report type is unknown, there is not yet a valid fix and all accessors 
+ *
+ * If the report type is unknown, there is not yet a valid fix and all accessors
  * will return `NULL`.
- * 
+ *
  * For example:
- *     
+ *
  *      const PosFix &fix = gps.GetPositionFix();
  *      if (fix.type == RPT_FIX_POS_LLA_32) {
  *          LLA_Fix<Float32> fixdata = fix.getLLA_32();
@@ -236,46 +236,46 @@ struct ENU_VFix {
  *          XYZ_FIX<Float32> fixdata = fix.getXYZ_32();
  *          // ...
  *      } // etc.
- *     
+ *
  */
 struct PosFix {
-    
+
     /// Format of stored position fix.
     ReportType type;
-    
+
     PosFix();
-    
+
     const LLA_Fix<Float32> *getLLA_32() const;
     const LLA_Fix<Float64> *getLLA_64() const;
     const XYZ_Fix<Float32> *getXYZ_32() const;
     const XYZ_Fix<Float64> *getXYZ_64() const;
-    
+
 protected:
-    
+
     union {
         XYZ_Fix<Float32> xyz_32;
         XYZ_Fix<Float64> xyz_64;
         LLA_Fix<Float32> lla_32;
         LLA_Fix<Float64> lla_64;
     };
-    
+
     friend class CopernicusGPS;
 };
 
 /**
  * @brief Velocity fix.
- * 
+ *
  * Depending on the reporting mode of the receiver, this structure may store
- * a report of type `RPT_FIX_VEL_XYZ`, `RPT_FIX_VEL_ENU`, or `RPT_NONE`. The 
- * stored type is indicated by `VelFix.type`; use one of the two access methods 
- * to obtain an object storing the actual velocity data. Access methods which 
- * don't currently correspond to the store type will return `NULL`. 
- * 
- * If the report type is unknown, there is not yet a valid fix and all accessors 
+ * a report of type `RPT_FIX_VEL_XYZ`, `RPT_FIX_VEL_ENU`, or `RPT_NONE`. The
+ * stored type is indicated by `VelFix.type`; use one of the two access methods
+ * to obtain an object storing the actual velocity data. Access methods which
+ * don't currently correspond to the store type will return `NULL`.
+ *
+ * If the report type is unknown, there is not yet a valid fix and all accessors
  * will return `NULL`.
- * 
+ *
  * For example:
- *     
+ *
  *     const VelFix &fix = gps.GetVelocityFix();
  *     if (fix.type == RPT_FIX_VEL_ENU) {
  *         ENU_VFix fixdata = fix.getENU();
@@ -289,19 +289,19 @@ protected:
 struct VelFix {
     /// Format of stored velocity fix.
     ReportType type;
-    
+
     VelFix();
-    
+
     const XYZ_VFix *getXYZ() const;
     const ENU_VFix *getENU() const;
-    
+
 protected:
-    
+
     union {
         XYZ_VFix xyz;
         ENU_VFix enu;
     };
-    
+
     friend class CopernicusGPS;
 };
 
@@ -313,7 +313,7 @@ struct GPSTime {
 
 struct GPSStatus {
     GPSStatus();
-    
+
     GPSHealth health;         // pkt 0x46
     int n_satellites;         // pkt 0x6d
     bool almanac_incomplete;  // pkt 0x4b
@@ -325,4 +325,3 @@ struct GPSStatus {
 /// @} // addtogroup datapoint
 
 #endif	/* GPSTYPE_H */
-
