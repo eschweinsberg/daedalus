@@ -1,0 +1,71 @@
+c:\users\joseph\documents\visual studio 2013\Projects\ErebusUI\ErebusUI\bin\Debug\ErebusUI.exe.config
+c:\users\joseph\documents\visual studio 2013\Projects\ErebusUI\ErebusUI\obj\Debug\ErebusUI.csprojResolveAssemblyReference.cache
+c:\users\joseph\documents\visual studio 2013\Projects\ErebusUI\ErebusUI\obj\Debug\Views\MainWindow.baml
+c:\users\joseph\documents\visual studio 2013\Projects\ErebusUI\ErebusUI\obj\Debug\Views\MainWindow.g.cs
+c:\users\joseph\documents\visual studio 2013\Projects\ErebusUI\ErebusUI\obj\Debug\Views\App.g.cs
+c:\users\joseph\documents\visual studio 2013\Projects\ErebusUI\ErebusUI\obj\Debug\ErebusUI_MarkupCompile.cache
+c:\users\joseph\documents\visual studio 2013\Projects\ErebusUI\ErebusUI\obj\Debug\ErebusUI.g.resources
+c:\users\joseph\documents\visual studio 2013\Projects\ErebusUI\ErebusUI\obj\Debug\ErebusUI.Properties.Resources.resources
+c:\users\joseph\documents\visual studio 2013\Projects\ErebusUI\ErebusUI\obj\Debug\ErebusUI.csproj.GenerateResource.Cache
+G:\ErebusUI\ErebusUI\bin\Debug\ErebusUI.exe.config
+G:\ErebusUI\ErebusUI\obj\Debug\ErebusUI.csprojResolveAssemblyReference.cache
+G:\ErebusUI\ErebusUI\obj\Debug\Views\LaunchControlls.baml
+G:\ErebusUI\ErebusUI\obj\Debug\Views\LaunchControlls.g.cs
+G:\ErebusUI\ErebusUI\obj\Debug\Views\App.g.cs
+G:\ErebusUI\ErebusUI\obj\Debug\ErebusUI_MarkupCompile.cache
+G:\ErebusUI\ErebusUI\obj\Debug\ErebusUI.g.resources
+G:\ErebusUI\ErebusUI\obj\Debug\ErebusUI.Properties.Resources.resources
+G:\ErebusUI\ErebusUI\obj\Debug\ErebusUI.csproj.GenerateResource.Cache
+G:\ErebusUI\ErebusUI\bin\Debug\ErebusUI.exe
+G:\ErebusUI\ErebusUI\bin\Debug\ErebusUI.pdb
+G:\ErebusUI\ErebusUI\bin\Debug\DynamicDataDisplay.dll
+G:\ErebusUI\ErebusUI\bin\Debug\DynamicDataDisplay.Maps.dll
+G:\ErebusUI\ErebusUI\bin\Debug\DynamicDataDisplay.Markers.dll
+G:\ErebusUI\ErebusUI\bin\Debug\DynamicDataDisplay.Markers2.dll
+G:\ErebusUI\ErebusUI\bin\Debug\GalaSoft.MvvmLight.dll
+G:\ErebusUI\ErebusUI\bin\Debug\GalaSoft.MvvmLight.Extras.dll
+G:\ErebusUI\ErebusUI\bin\Debug\GalaSoft.MvvmLight.Platform.dll
+G:\ErebusUI\ErebusUI\bin\Debug\Microsoft.Practices.ServiceLocation.dll
+G:\ErebusUI\ErebusUI\bin\Debug\Parser.dll
+G:\ErebusUI\ErebusUI\bin\Debug\System.Windows.Interactivity.dll
+G:\ErebusUI\ErebusUI\bin\Debug\GalaSoft.MvvmLight.pdb
+G:\ErebusUI\ErebusUI\bin\Debug\GalaSoft.MvvmLight.xml
+G:\ErebusUI\ErebusUI\bin\Debug\GalaSoft.MvvmLight.Extras.pdb
+G:\ErebusUI\ErebusUI\bin\Debug\GalaSoft.MvvmLight.Extras.xml
+G:\ErebusUI\ErebusUI\bin\Debug\GalaSoft.MvvmLight.Platform.pdb
+G:\ErebusUI\ErebusUI\bin\Debug\GalaSoft.MvvmLight.Platform.xml
+G:\ErebusUI\ErebusUI\bin\Debug\Microsoft.Practices.ServiceLocation.pdb
+G:\ErebusUI\ErebusUI\bin\Debug\Microsoft.Practices.ServiceLocation.xml
+G:\ErebusUI\ErebusUI\obj\Debug\ErebusUI.exe
+G:\ErebusUI\ErebusUI\obj\Debug\ErebusUI.pdb
+C:\Users\administrator.BECK\Documents\ErebusUI\ErebusUI\bin\Debug\ErebusUI.exe.config
+C:\Users\administrator.BECK\Documents\ErebusUI\ErebusUI\obj\Debug\ErebusUI.exe
+C:\Users\administrator.BECK\Documents\ErebusUI\ErebusUI\obj\Debug\ErebusUI.pdb
+C:\Users\administrator.BECK\Documents\ErebusUI\ErebusUI\obj\Debug\ErebusUI.csprojResolveAssemblyReference.cache
+C:\Users\administrator.BECK\Documents\ErebusUI\ErebusUI\obj\Debug\Views\LaunchControlls.baml
+C:\Users\administrator.BECK\Documents\ErebusUI\ErebusUI\obj\Debug\Views\LaunchControlls.g.cs
+C:\Users\administrator.BECK\Documents\ErebusUI\ErebusUI\obj\Debug\Views\App.g.cs
+C:\Users\administrator.BECK\Documents\ErebusUI\ErebusUI\obj\Debug\ErebusUI_MarkupCompile.cache
+C:\Users\administrator.BECK\Documents\ErebusUI\ErebusUI\obj\Debug\ErebusUI.g.resources
+C:\Users\administrator.BECK\Documents\ErebusUI\ErebusUI\obj\Debug\ErebusUI.Properties.Resources.resources
+C:\Users\administrator.BECK\Documents\ErebusUI\ErebusUI\obj\Debug\ErebusUI.csproj.GenerateResource.Cache
+C:\Users\administrator.BECK\Documents\ErebusUI\ErebusUI\bin\Debug\ErebusUI.exe
+C:\Users\administrator.BECK\Documents\ErebusUI\ErebusUI\bin\Debug\ErebusUI.pdb
+C:\Users\administrator.BECK\Documents\ErebusUI\ErebusUI\bin\Debug\DynamicDataDisplay.dll
+C:\Users\administrator.BECK\Documents\ErebusUI\ErebusUI\bin\Debug\DynamicDataDisplay.Maps.dll
+C:\Users\administrator.BECK\Documents\ErebusUI\ErebusUI\bin\Debug\DynamicDataDisplay.Markers.dll
+C:\Users\administrator.BECK\Documents\ErebusUI\ErebusUI\bin\Debug\DynamicDataDisplay.Markers2.dll
+C:\Users\administrator.BECK\Documents\ErebusUI\ErebusUI\bin\Debug\GalaSoft.MvvmLight.dll
+C:\Users\administrator.BECK\Documents\ErebusUI\ErebusUI\bin\Debug\GalaSoft.MvvmLight.Extras.dll
+C:\Users\administrator.BECK\Documents\ErebusUI\ErebusUI\bin\Debug\GalaSoft.MvvmLight.Platform.dll
+C:\Users\administrator.BECK\Documents\ErebusUI\ErebusUI\bin\Debug\Microsoft.Practices.ServiceLocation.dll
+C:\Users\administrator.BECK\Documents\ErebusUI\ErebusUI\bin\Debug\Parser.dll
+C:\Users\administrator.BECK\Documents\ErebusUI\ErebusUI\bin\Debug\System.Windows.Interactivity.dll
+C:\Users\administrator.BECK\Documents\ErebusUI\ErebusUI\bin\Debug\GalaSoft.MvvmLight.pdb
+C:\Users\administrator.BECK\Documents\ErebusUI\ErebusUI\bin\Debug\GalaSoft.MvvmLight.xml
+C:\Users\administrator.BECK\Documents\ErebusUI\ErebusUI\bin\Debug\GalaSoft.MvvmLight.Extras.pdb
+C:\Users\administrator.BECK\Documents\ErebusUI\ErebusUI\bin\Debug\GalaSoft.MvvmLight.Extras.xml
+C:\Users\administrator.BECK\Documents\ErebusUI\ErebusUI\bin\Debug\GalaSoft.MvvmLight.Platform.pdb
+C:\Users\administrator.BECK\Documents\ErebusUI\ErebusUI\bin\Debug\GalaSoft.MvvmLight.Platform.xml
+C:\Users\administrator.BECK\Documents\ErebusUI\ErebusUI\bin\Debug\Microsoft.Practices.ServiceLocation.pdb
+C:\Users\administrator.BECK\Documents\ErebusUI\ErebusUI\bin\Debug\Microsoft.Practices.ServiceLocation.xml

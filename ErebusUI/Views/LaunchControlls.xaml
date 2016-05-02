@@ -1,0 +1,25 @@
+﻿<Window x:Class="ErebusUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="555" Width="1000">
+    <Grid>
+        <StackPanel HorizontalAlignment="Left">
+            <TextBlock>First Stage</TextBlock>
+            <Button Name="first_ignition" Content="Ignite Stage 1" Command="{Binding IgniteStage1Command}" Height="25"/>
+            <Button Name="first_parachute" Content="Deploy Stage 1 Parachute" Command="{Binding DeployStage1Command}"/>
+            <Button Name="first_disable_ignition" Content="Disable Ignition Stage 1" Command="{Binding DisableIgnition1Command}"/>
+            <Button Name="firs_Xtra" Content="XTRA" Command="{Binding XTRACommand}"/>
+            <TextBlock>Second Stage</TextBlock>
+            <Button Name="second_ignition" Content="Ignite Stage 2" Command="{Binding IgniteStage1Command}"/>
+            <Button Name="second_parachute" Content="Deploy Stage 2 Parachute" Command="{Binding DeployStage2Command}"/>
+            <Button Name="second_disable_ignition" Content="Disable Ignition Stage 2" Command="{Binding DisableIgnition2Command}"/>
+            <Button Name="second_Xtra" Content="XTRA" Command="{Binding XTRACommand}"/>
+        </StackPanel>
+        <!--<d3:ChartPlotter Name="plotter" Background ="White">
+            <d3:ChartPlotter.Resources>
+                <conversionfaggot:Date2AxisConverter x:Key"Date2AxisConverter"></conversionfaggot:Date2AxisConverter>
+            </d3:ChartPlotter.Resources>
+
+        </d3:ChartPlotter>-->
+    </Grid>
+</Window>

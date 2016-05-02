@@ -1,0 +1,91 @@
+﻿<Window x:Class="ErebusUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Project Erebus" Height="555" Width="1000">
+    <Window.Background>
+        <ImageBrush ImageSource="/ErebusUI;component/Resources/rocket background.jpg"/>
+    </Window.Background>
+    <Grid>
+        <StackPanel HorizontalAlignment="Left">
+            
+            <Grid Background="WhiteSmoke" Margin="10">
+                <StackPanel>
+                    <TextBlock Background="White" Margin="5,0,0,0">First Stage</TextBlock>
+                    <Button Name="first_ignition" Content="Ignite" Command="{Binding IgniteStage1Command}" IsEnabled="{Binding isSerialStarted}" Height="25" Margin="5"/>
+                    <Button Name="first_parachute" Content="Deploy Parachute" Command="{Binding DeployStage1Command}" IsEnabled="{Binding isSerialStarted}" Height="25" Margin="5"/>
+                    <Button Name="first_disable_ignition" Content="Disable Ignition" Command="{Binding DisableIgnition1Command}" IsEnabled="{Binding isSerialStarted}" Height="25" Margin="5"/>
+                    <Button Name="firs_Xtra" Content="Disable Parachute" Command="{Binding DisableParachute1Command}" IsEnabled="{Binding isSerialStarted}" Height="25" Margin="5"/>
+                </StackPanel>
+            </Grid>
+            <Grid Background="WhiteSmoke" Margin="10">
+                <StackPanel>
+                    <TextBlock Background="White" Margin="5,0,0,0">Second Stage</TextBlock>
+                    <Button Name="second_ignition" Content="Ignite" Command="{Binding IgniteStage1Command}" IsEnabled="{Binding isSerialStarted}" Height="25" Margin="5"/>
+                    <Button Name="second_parachute" Content="Deploy Parachute" Command="{Binding DeployStage2Command}" IsEnabled="{Binding isSerialStarted}" Height="25" Margin="5"/>
+                    <Button Name="second_disable_ignition" Content="Disable Ignition" Command="{Binding DisableIgnition2Command}" IsEnabled="{Binding isSerialStarted}" Height="25" Margin="5"/>
+                    <Button Name="second_Xtra" Content="Disable Parachute" Command="{Binding DisableParachute2Command}" IsEnabled="{Binding isSerialStarted}"  Height="25" Margin="5"/>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+        <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="0,0,643.333,263.333">
+            <Grid Background="WhiteSmoke" Margin="10">
+                <StackPanel>
+                    <TextBlock HorizontalAlignment="Center" FontWeight="Bold" FontSize="14" Margin="5">First Stage</TextBlock>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock HorizontalAlignment="Left" Width="75" Margin="5,0,0,0">Altitude</TextBlock>
+                        <TextBlock HorizontalAlignment="Right" Width="75" TextAlignment="Right" Margin="0,0,5,0">Meters</TextBlock>
+                    </StackPanel>
+                    <TextBox IsReadOnly="true" Width="150" Height="25" Margin="5" Text="{Binding altitudeStageOne}"/>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock HorizontalAlignment="Center" TextAlignment="Left" Width="75" Margin="5,0,0,0">Speed</TextBlock>
+                        <TextBlock HorizontalAlignment="center" TextAlignment="Right" Width="75" Margin="0,0,5,0">m/s</TextBlock>
+                    </StackPanel>
+                    <TextBox IsReadOnly="true" Width="150" Height="25" Margin="5" Text="{Binding velocityStageOne}"/>
+                    <TextBlock HorizontalAlignment="Center">Latitude</TextBlock>
+                    <TextBox IsReadOnly="true" Width="150" Height="25" Margin="5" Text="{Binding latitudeStageOne}"/>
+                    <TextBlock HorizontalAlignment="Center">Longitude</TextBlock>
+                    <TextBox IsReadOnly="true" Width="150" Height="25" Margin="5" Text="{Binding longitudeStageOne}"/>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+        <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="0,0,463.333,263.333">
+            <Grid Background="WhiteSmoke" Margin="10">
+                <StackPanel>
+                    <TextBlock HorizontalAlignment="Center" FontWeight="Bold" FontSize="14" Margin="5">Second Stage</TextBlock>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock HorizontalAlignment="Left" Width="75" Margin="5,0,0,0">Altitude</TextBlock>
+                        <TextBlock HorizontalAlignment="Right" Width="75" TextAlignment="Right" Margin="0,0,5,0">Meters</TextBlock>
+                    </StackPanel>
+                    <TextBox IsReadOnly="true" Width="150" Height="25" Margin="5" Text="{Binding altitudeStageTwo}"/>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock HorizontalAlignment="Center" TextAlignment="Left" Width="75" Margin="5,0,0,0">Speed</TextBlock>
+                        <TextBlock HorizontalAlignment="center" TextAlignment="Right" Width="75" Margin="0,0,5,0">m/s</TextBlock>
+                    </StackPanel>
+                    <TextBox IsReadOnly="true" Width="150" Height="25" Margin="5" Text="{Binding velocityStageTwo}"/>
+                    <TextBlock HorizontalAlignment="Center">Latitude</TextBlock>
+                    <TextBox IsReadOnly="true" Width="150" Height="25" Margin="5" Text="{Binding latitudeStageTwo}"/>
+                    <TextBlock HorizontalAlignment="Center">Longitude</TextBlock>
+                    <TextBox IsReadOnly="true" Width="150" Height="25" Margin="5" Text="{Binding longitudeStageTwo}"/>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+        <StackPanel HorizontalAlignment="Right" Margin="0,348,10.333,10.333">
+            <Grid Background="WhiteSmoke" Margin="10">
+                <StackPanel>
+                    <TextBlock Margin="5" Text="Serial Port Select"/>
+                    <ComboBox ItemsSource="{Binding availablePorts}" SelectedItem="{Binding chosenSerialPortName, Mode=TwoWay}" Margin="5"/>
+                    <Button x:Name="Begin_Serial" Content="Start Reading from Serial" Command="{Binding BeginSerialPort}" Height="25" Margin="5"/>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+        <StackPanel HorizontalAlignment="Right" Margin="5">
+            <Grid Background="WhiteSmoke" Height="200" Width="400">
+                <StackPanel>
+                    <TextBlock HorizontalAlignment="Left">Console Messages.</TextBlock>
+                    <TextBox Margin="5" Text="{Binding parsingMessages}" IsReadOnly="True" Height="170"/>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</Window>
+ 
