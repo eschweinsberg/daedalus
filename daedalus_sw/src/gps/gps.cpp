@@ -15,6 +15,7 @@ float toDegrees(float angle_radians) {
  */
 void Gps::initAll()
 {
+  Serial.println("Attempting to acquire satellites.");
   gps_ = CopernicusGPS(1);
   gps_.setFixMode(RPT_FIX_POS_LLA_32, RPT_FIX_VEL_ENU);
   alt_ = 0;
@@ -22,6 +23,7 @@ void Gps::initAll()
   lat_ = 0;
   bias_ = 0;
   time_ = 0;
+  Serial.println("Satellites acquired.");
 }
 
 /**
